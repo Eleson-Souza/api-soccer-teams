@@ -1,0 +1,25 @@
+body {
+    background-color: #646464;
+}
+
+.search-country {
+    width: 260px;
+    float: right;
+    margin-bottom: 15px;
+}
+
+thead th {
+    text-align: center;
+}
+
+.table {
+    background-color: #cecdcd;
+}
+
+.stadium {
+    width: 240px;
+}
+
+.uf {
+    width: 40px;
+}

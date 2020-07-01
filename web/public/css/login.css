@@ -1,0 +1,49 @@
+body {
+    background-color: #4b4a4a;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+.card-login {
+    background-color: #fff;
+    font-family: Arial;
+    font-size: 18px;
+    border-radius: 8px;
+    width: 330px;
+}
+
+.card-login-header {
+    background-color: #e2e2e2;
+    padding: 14px;
+    border-bottom: 2px solid #6e6e6e;
+    border-radius: 8px 8px 0px 0px;
+    
+}
+
+.card-login-body {
+    padding: 20px;
+
+}
+
+.card-login-body input {
+    width: 100%;
+}
+
+.card-login-body button {
+    height: 38px;
+    width: 120px;
+    background-color: #3861ac;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}

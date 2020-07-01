@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<link rel="stylesheet" href="/css/home.css">
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2>Novo Time</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/novo-time" method="post" class="form">
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    placeholder="Nome do time..." 
+                    class="form-control mb-4"
+                    required
+                />
+                
+                <input 
+                    type="text" 
+                    name="stadium" 
+                    id="stadium" 
+                    placeholder="Estádio do time..." 
+                    class="form-control mb-4"
+                    required
+                />
+                
+                <input 
+                    type="text" 
+                    name="coach" 
+                    id="coach" 
+                    placeholder="Técnico atual do time..." 
+                    class="form-control mb-4"
+                />
+                
+                <select class="form-control mb-4" name="country" required>
+                    <option disabled selected>Selecione um País</option>
+                    <% apiCountries.forEach(country => { %>
+                        <option value="<%= country.country %>"> 
+                            <%= country.country %> 
+                        </option>
+                    <% }); %>
+                </select>
+
+                <select class="form-control mb-4" name="uf">
+                    <option>Selecione uma UF</option>
+                    <% apiUfs.forEach(uf => { %>
+                        <option value="<%= uf.sigla %>">
+                            <%= uf.sigla %>
+                        </option>
+                    <% }); %>
+                </select>
+
+                <input 
+                    type="text" 
+                    name="city" 
+                    id="city" 
+                    placeholder="Cidade sede do time..." 
+                    class="form-control mb-4"
+                    required
+                />
+
+                <button class="btn btn-success" type="submit">Cadastrar</button>
+
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

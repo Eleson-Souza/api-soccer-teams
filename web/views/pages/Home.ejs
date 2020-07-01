@@ -1,0 +1,79 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<link rel="stylesheet" href="/css/home.css">
+<div class="container">
+    <h2 style="color:#fff;" class="my-3">Listagem de Times</h2>
+    <select 
+        name="countries" 
+        class="form-control search-country" 
+        onchange="handleListByCountry(event)"
+    >
+        <option>Filtre por Países</option>
+        <option>Todos</option>
+
+        <% countries.forEach(country => { %>
+            <option value="<%= country.country %>"> 
+                <%= country.country %> 
+            </option>
+        <% }); %>
+    </select>
+
+    <table class="table table-bordered table-hover">
+        <thead class="bg-danger text-light">
+            <th>#</th>
+            <th>Time</th>
+            <th class="stadium">Estádio</th>
+            <th>Técnico</th>
+            <th>País</th>
+            <th class="uf">UF</th>
+            <th>Cidade</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            <% data.forEach(team => { %>
+                <tr>
+                    <td><%= team.id %></td>
+                    <td><%= team.name %></td>
+                    <td><%= team.stadium %></td>
+                    <td><%= team.coach %></td>
+                    <td><%= team.country %></td>
+                    <td><%= team.uf %></td>
+                    <td><%= team.city %></td>
+
+                    <td>
+                        <a href="/edicao-time/<%= team.id %>" class="btn btn-warning">Editar</a>
+                        <form 
+                            action="/delecao-time" 
+                            method="POST" 
+                            style="
+                                display:inline-block;"
+                            onsubmit="confirmDelete(event)"        
+                        >
+                            <input type="hidden" name="id" id="id" value="<%= team.id %>"/>
+                            <button class="btn btn-danger" type="submit">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+            
+        </tbody>
+    </table>
+</div>
+<script>
+    function confirmDelete(event) {
+        var option = confirm('O item selecionado será excluído permanentemente, deseja continuar?');
+        if(option) {
+            event.submit();
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    function handleListByCountry(event) {
+        let country = event.target.value;
+        window.location.href = `/pais?country=${country}`;
+    }
+</script>
+
+<%- include('../partials/footer.ejs') %>

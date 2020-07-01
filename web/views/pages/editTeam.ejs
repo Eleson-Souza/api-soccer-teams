@@ -1,0 +1,91 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<link rel="stylesheet" href="/css/home.css">
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2>Edição de Time</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/edicao-time/<%= team.id %>" method="post" class="form">
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    placeholder="Nome do time..." 
+                    class="form-control mb-4"
+                    value="<%= team.name %>"
+                    required
+                />
+                
+                <input 
+                    type="text" 
+                    name="stadium" 
+                    id="stadium" 
+                    placeholder="Estádio do time..." 
+                    class="form-control mb-4"
+                    value="<%= team.stadium %>"
+                    required
+                />
+                
+                <input 
+                    type="text" 
+                    name="coach" 
+                    id="coach" 
+                    placeholder="Técnico atual do time..." 
+                    class="form-control mb-4"
+                    value="<%= team.coach %>"
+                />
+                
+                <select class="form-control mb-4" name="country" required>
+                    <option disabled selected>Selecione um País</option>
+                    <% apiCountries.forEach(country => { %>
+                        <% if(team.country == country.country) { %>
+                            <option value="<%= country.country %>" selected> 
+                                <%= country.country %> 
+                            </option>
+                        <% } else { %>
+                            <option value="<%= country.country %>"> 
+                                <%= country.country %> 
+                            </option>
+                        <% } %>
+                    <% }); %>
+                </select>
+
+                <select class="form-control mb-4" name="uf">
+                    <option>Selecione uma UF</option>
+                    <% apiUfs.forEach(uf => { %>
+                        <% if(team.uf == uf.sigla) { %>
+                            <option value="<%= uf.sigla %>" selected>
+                                <%= uf.sigla %>
+                            </option>
+                        <% } else { %>
+                            <option value="<%= uf.sigla %>">
+                                <%= uf.sigla %>
+                            </option>
+                        <% } %>
+                    <% }); %>
+                </select>
+
+                <input 
+                    type="text" 
+                    name="city" 
+                    id="city" 
+                    placeholder="Cidade sede do time..." 
+                    class="form-control mb-4"
+                    value="<%= team.city %>"
+                    required
+                />
+
+                <button class="btn btn-warning" type="submit">Atualizar</button>
+
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
